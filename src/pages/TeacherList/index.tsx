@@ -10,6 +10,7 @@ import TeacherItem, { Teacher } from '../../components/TeacherItem';
 import api from '../../services/api';
 
 import styles from './styles'
+import { useFocusEffect } from '@react-navigation/native';
 
 function TeacherList(){
     const [isFiltersVisible, setIsFilterVisible] = useState(false);
@@ -18,7 +19,7 @@ function TeacherList(){
     const [week_day, setWeekDay] = useState('');
     const [time, setTime] = useState('');
 
-    const [favorites, setFavorites]= useState<number[]>([]);
+    const [favorites, setFavorites]= useState([]);
 
     const [teachers, setTeachers] = useState([]);
 
@@ -35,6 +36,10 @@ function TeacherList(){
             }
         })
     }
+
+    useFocusEffect(() => {
+        LoadFavorites();
+    })
 
 
     async function hanfleFiltersSubmit(){
